@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'Contact.apps.ContactConfig',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +125,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# EMAIL SETTINGS
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '4bb3ea2186761d'
+EMAIL_HOST_PASSWORD = 'fd0873c93c3cac'
+EMAIL_PORT = '2525'
+
+# CONFIGURACIÓN DE DJANGO CRIPY FORMS BOOTSTRAP 5
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

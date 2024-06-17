@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h3 class="text-center">Formulario de Contacto</h3>
+<p class="fs-5 text-center px-5">Es un placer que puedas contactarnos. Nos pondremos en contacto contigo, en el menor
+    tiempo posible</p>
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            {% csrf_token %}
+   
+            {{ form|crispy }}
+   
+            <input type="submit" class="btn btn-primary" value="Enviar Mensaje" {% if 'ok' in request.GET %} disabled {% endif %} {% if 'error' in request.GET %} disabled {% endif %}>
+        </form>
+
+        <!-- pregunto su la url contiene 'ok', si es así muestro un mensaje informando que el msj se envió correctamente  -->
+        {% if 'ok' in request.GET %}
+        <div class="alert alert-success mt-5" role="alert">
+            <strong>Tu mensaje se envió correctamente.</strong>
+        </div>
+        {% endif %}
+
+        <!-- pregunto su la url contiene 'error', si es así muestro un mensaje informando que el msj se NO envió correctamente  -->
+        {% if 'error' in request.GET %}
+        <div class="alert alert-danger mt-5" role="alert">
+            <strong>Tu mensaje no ha podido enviarse. Intenta nuevamente mas tarde. Lo sentimos!!</strong>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div class="col-md-6 mb-5">
+        <img class="float-start img-fluid" src={% static 'contact/img/email.jpg' %} alt="">
+    </div>
+</div>
+
+<hr>
+
+<div class="d-grid gap-2 col-6 mx-auto mb-5">
+    <a class="btn btn-info btn-lg" href={% url 'home' %}>Volver al Inicio</a>
+</div>
+
+
+{% endblock %}
